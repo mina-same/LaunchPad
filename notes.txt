@@ -1,0 +1,5 @@
+installed debency
+
+- expo-font
+- axios
+- react-native-dotenv
