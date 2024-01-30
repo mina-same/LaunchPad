@@ -13,7 +13,7 @@ import { SIZES, icons } from '../../../constants';
 
 const jopTypes= ["Full-Time", "part-Time", "internship", "freelance", "contractor"]
 
-const Welcome = () => {
+const Welcome = ({searchTerm, handleClick, setSearchTerm}) => {
   const router = useRouter();
   const [activeJopType, setActiveJopType] = useState("Full-Time")
 
@@ -28,13 +28,13 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput 
             style={styles.searchInput}
-            value=""
-            onChange={() => {}}
+            value={searchTerm}
+            onChangeText={(text) => setSearchTerm(text)}
             placeholder='what are ou looking for?'
             />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
             source={icons.search}
             resizeMode='contain'
