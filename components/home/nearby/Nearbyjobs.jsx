@@ -18,12 +18,14 @@ const Nearbyjobs = () => {
     num_pages: "1",
   });
 
+  console.log(data[0]);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Nearby jobs</Text>
         <TouchableOpacity>
-          <Text style={styles.headerBtn}>Show all</Text>
+          <Tex style={styles.headerBtn}>Show all</Tex>
         </TouchableOpacity>
       </View>
 
@@ -33,11 +35,11 @@ const Nearbyjobs = () => {
         ) : error ? (
           <Text>Something went wrong</Text>
         ) : (
-          data?.map((jop) => (
+          data?.map((job) => (
             <NearbyJobCard
-              jop={jop}
-              key={`nearby-jop-${jop.job_id}`}
-              handleNavigate={() => router.push(`/job-details/${jop.job_id}`)}
+              job={job}
+              key={`nearby-job-${job.job_id}`}
+              handleNavigate={() => router.push(`/job-details/${job.job_id}`)}
             />
           ))
         )}

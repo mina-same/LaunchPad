@@ -11,17 +11,17 @@ import { useRouter } from "expo-router";
 import styles from './welcome.style';
 import { SIZES, icons } from '../../../constants';
 
-const jopTypes= ["Full-Time", "part-Time", "internship", "freelance", "contractor"]
+const jobTypes= ["Full-Time", "part-Time", "internship", "freelance", "contractor"]
 
 const Welcome = ({searchTerm, handleClick, setSearchTerm}) => {
   const router = useRouter();
-  const [activeJopType, setActiveJopType] = useState("Full-Time")
+  const [activeJobType, setActiveJobType] = useState("Full-Time")
 
   return (
     <View>
       <View style={styles.container}>
         <Text style={styles.userName}>Hello, Mina.</Text>
-        <Text style={styles.welcomeMessage}>Find Your Perfect Jop.</Text>
+        <Text style={styles.welcomeMessage}>Find Your Perfect Job.</Text>
       </View>
 
       <View style={styles.searchContainer}>
@@ -45,16 +45,16 @@ const Welcome = ({searchTerm, handleClick, setSearchTerm}) => {
 
       <View style={styles.tabsContainer}>
         <FlatList
-          data={jopTypes}
+          data={jobTypes}
           renderItem={({item}) =>(
             <TouchableOpacity
-              style={styles.tab(activeJopType, item)}
+              style={styles.tab(activeJobType, item)}
               onPress={() => { 
-                setActiveJopType(item);
+                setActiveJobType(item);
                 router.push(`/search/${item}`)
               }}
             >
-              <Text style={styles.tabText(activeJopType,item)}>{item}</Text>
+              <Text style={styles.tabText(activeJobType,item)}>{item}</Text>
             </TouchableOpacity>
           )}
           keyExtractor={item => item}

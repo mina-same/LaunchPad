@@ -23,20 +23,24 @@ import useFetch from "../../hook/useFetch";
 
 const tabs = ["About", "Quelification", "Responsibilities", "Skills"];
 
-const jopDetails = () => {
+const jobDetails = () => {
   const params = useSearchParams();
   const router = useRouter();
   
   const [refreshing, setrefreshing] = useState(false);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
-  const onRefresh = () => {};
+  const onRefresh = useCallback(() => {
+    setrefreshing(true);
+    refetch();
+    setrefreshing(false);
+  }, [])
 
   const { data, isLoading, error, refetch } = useFetch(`job-details`, {
     job_id: params.id,
   });
 
-  console.log(data[0])
+  console.log(data)
 
   const displayTabContent = () => {
     switch (activeTab) {
@@ -53,7 +57,7 @@ const jopDetails = () => {
       break;
 
       case "skills":
-        return <Text>Skills</Text>
+        return <Specifics title="Skills" points={data[0].job_required_skills ?? ['N/A']}/>;
       break;
 
       default:
@@ -99,7 +103,7 @@ const jopDetails = () => {
                   <View style={{padding: SIZES.medium, paddingBottom: 100}}>
               <Company 
                 companyLogo={data[0]?.employer_logo}
-                jopTitle={data[0]?.job_title}
+                jobTitle={data[0]?.job_title}
                 companyName={data[0]?.employer_name}
                 loacation={data[0]?.job_country}
                 />
@@ -121,4 +125,4 @@ const jopDetails = () => {
   );
 };
 
-export default jopDetails;
+export default jobDetails;
